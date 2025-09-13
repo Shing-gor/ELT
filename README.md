@@ -115,8 +115,9 @@ Execute these commands from the root of the project directory.
 
 ### Project Structure
 
-.elt_project/
-├── .gitignore
+```bash
+.elt_project/ 
+├── .gitignore 
 ├── README.md
 ├── data/
 │   └── (Raw data files, not committed to Git)
@@ -138,3 +139,4 @@ Execute these commands from the root of the project directory.
             ├── stg_orders.sql
             ├── stg_products.sql
             └── stg_sellers.sql
+   ```
