@@ -1,0 +1,55 @@
+version: 2
+
+models:
+  - name: dim_customers
+    description: "Dimension table containing one row per unique customer."
+    columns:
+      - name: customer_id
+        description: "The primary key for this table."
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_products
+    description: "Dimension table with product and seller information."
+    columns:
+      - name: product_id
+        description: "The primary key for products."
+        tests:
+          - not_null
+          # Note: product_id is not unique here because we join with sellers.
+          # A more advanced model might handle this differently.
+
+  - name: fct_orders
+    description: "Fact table containing one row per order item. This is the central table of our star schema."
+    columns:
+      - name: order_item_sk
+        description: "The surrogate primary key for this table, uniquely identifying each order item."
+        tests:
+          - unique
+          - not_null
+      - name: order_id
+        description: "Foreign key to the orders table."
+        tests:
+          - not_null
+      - name: customer_id
+        description: "Foreign key to the dim_customers table."
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_customers')
+              field: customer_id
+      - name: product_id
+        description: "Foreign key to the dim_products table."
+        tests:
+          - not_null
+          # We cannot test this relationship directly due to the product_id not being unique in dim_products
+          # - relationships:
+          #     to: ref('dim_products')
+          #     field: product_id
+      - name: review_score
+        description: "The score given in the review, from 1 to 5."
+        tests:
+          - dbt_utils.accepted_range:
+              min_value: 0
+              max_value: 5

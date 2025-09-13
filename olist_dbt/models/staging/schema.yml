@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: raw_data # This is a name you choose for the source
+    schema: raw_olist # This is the actual dataset name in BigQuery
+    tables:
+      - name: customers
+      - name: geolocation
+      - name: order_items
+      - name: order_payments
+      - name: order_reviews
+      - name: orders
+      - name: products
+      - name: sellers
