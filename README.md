@@ -115,21 +115,26 @@ Execute these commands from the root of the project directory.
 
 ### Project Structure
 
-.
+.elt_project/
 ├── .gitignore
 ├── README.md
 ├── data/
-│   └── olist_..._dataset.csv (raw data files)
+│   └── (Raw data files, not committed to Git)
 ├── load_to_bigquery.py
 └── olist_dbt/
-├── dbt_project.yml
-├── packages.yml
-└── models/
-├── marts/
-│   ├── dim_customers.sql
-│   ├── dim_products.sql
-│   └── fct_orders.sql
-└── staging/
-├── schema.yml
-├── stg_customers.sql
-└── ... (other staging models)
+    ├── dbt_project.yml
+    ├── packages.yml
+    └── models/
+        ├── marts/
+        │   ├── dim_customers.sql
+        │   ├── dim_products.sql
+        │   └── fct_orders.sql
+        └── staging/
+            ├── schema.yml
+            ├── stg_customers.sql
+            ├── stg_order_items.sql
+            ├── stg_order_payments.sql
+            ├── stg_order_reviews.sql
+            ├── stg_orders.sql
+            ├── stg_products.sql
+            └── stg_sellers.sql
